@@ -1,12 +1,11 @@
 import math
 from metoda import *
 from problem import *
-import numpy as np
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
 NUM_PARTICLES = 100
-ITERATIONS = 10
+FLIGHTS = 100
 STEP_SIZE = 1.0
 OBSERVATION_NOISE = Noise(pos_std = 0.1)
 MOTION_NOISE = Noise(pos_std = 0.1, yaw_std=0.1)
@@ -112,7 +111,7 @@ def run_simulation():
     textures = [TextureType.TRIANGLE, TextureType.CROSS, TextureType.CROSS_WITH_CENTER]
     stats = Statistics()
     for texture in textures:
-        for _ in range(ITERATIONS):
+        for _ in range(FLIGHTS):
             helicopter = Helicopter()
             shortest_distance = helicopter.shortest_distance_to_platform()
             particle_filter = ParticleFilter(helicopter, NUM_PARTICLES, PARTICLE_FITLER_INIT_NOISE)
@@ -141,6 +140,7 @@ if __name__ == "__main__":
     print('(filtr cząsteczkowy dla symulacji lądowania helikopterem)')
     print('---------------------------------------------------------')
     NUM_PARTICLES = int(input(f'Liczba cząstek [{NUM_PARTICLES}]: ') or NUM_PARTICLES)
+    FLIGHTS = int(input(f'Liczba lotów [{FLIGHTS}]: ') or FLIGHTS)
     STEP_SIZE = float(input(f'Długość kroku [{STEP_SIZE}]: ') or STEP_SIZE)
     OBSERVATION_NOISE.pos_std = float(input(f'Szum pozycyjny w obserwacji [{OBSERVATION_NOISE.pos_std}]: ') or OBSERVATION_NOISE.pos_std)
     MOTION_NOISE.pos_std = float(input(f'Szum pozycyjny w ruchu [{MOTION_NOISE.pos_std}]: ') or MOTION_NOISE.pos_std)

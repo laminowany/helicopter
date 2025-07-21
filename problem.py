@@ -121,7 +121,7 @@ class Helicopter:
         self.x = x if x is not None else rand_side()
         self.y = y if y is not None else rand_side()
         self.z = z if z is not None else random.uniform(50.0, 60.0)
-        self.yaw = yaw if yaw is not None else  math.atan2(-self.y, -self.x)
+        self.yaw = yaw if yaw is not None else random.uniform(-math.pi, math.pi)
         self.distance_traveled = 0.0
         self.id = Helicopter.id_counter
         Helicopter.id_counter += 1
